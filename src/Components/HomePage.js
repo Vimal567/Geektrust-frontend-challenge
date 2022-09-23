@@ -141,42 +141,42 @@ function HomePage() {
     return email.match(mailformat);
   }
 
-  //Function which returns the current page users list
-  const getCurrentPageUserList = (userList) => {
-    let currentPageUserList = [];
-    let topUserIndex = (currentPageNumber - 1) * 10;
-    let bottomUserIndex =
-    topUserIndex + 9 <= userList.length - 1
-        ? topUserIndex + 9
-        : userList.length - 1;
-        currentPageUserList = userList.slice(topUserIndex, bottomUserIndex + 1);
-
-    //If the current page users data deleted move to the previous page
-    if (currentPageUserList.length === 0 && currentPageNumber !== 1) {
-      handlePreviousPagesClick();
-    }
-    return currentPageUserList;
-  }
-
-  //Variable containing current page users list
-  const currentPageUserList = 
-    searchString === "" 
-      ? getCurrentPageUserList(users) 
-      : getCurrentPageUserList(getUsersByNameEmailRole(searchString));
-
   //Handler function for previous page number
   const handlePreviousPagesClick = () => {
     if (currentPageNumber > 1) {
       setCurrentPageNumber(currentPageNumber - 1);
     }
   }
-
+  
+  //Function which returns the current page users list
+  const getCurrentPageUserList = (userList) => {
+    let currentPageUserList = [];
+    let topUserIndex = (currentPageNumber - 1) * 10;
+    let bottomUserIndex =
+    topUserIndex + 9 <= userList.length - 1
+    ? topUserIndex + 9
+    : userList.length - 1;
+    currentPageUserList = userList.slice(topUserIndex, bottomUserIndex + 1);
+    
+    //If the current page users data deleted move to the previous page
+    if (currentPageUserList.length === 0 && currentPageNumber !== 1) {
+      handlePreviousPagesClick();
+    }
+    return currentPageUserList;
+  }
+  
+  //Variable containing current page users list
+  const currentPageUserList = 
+    searchString === "" 
+      ? getCurrentPageUserList(users) 
+      : getCurrentPageUserList(getUsersByNameEmailRole(searchString));
   //Handler function for Next page number
   const handleNextPageClick = () => {
     if (currentPageNumber < totalPages) {
       setCurrentPageNumber(currentPageNumber + 1);
     }
   }
+  
   useEffect(() => {
     console.log("Current page number " + currentPageNumber);
     setUsersSelected([]); //Resets users when page changes
