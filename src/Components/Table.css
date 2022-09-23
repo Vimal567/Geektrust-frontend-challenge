@@ -36,12 +36,6 @@ td .save-button {
   margin-right: 0.75rem;
 }
 @media screen and (max-width: 768px) {
-  /* .selection-row {
-    flex-direction: column;
-    margin-top: 2rem;
-    margin: 0 0.5rem 0 0.5rem;
-  } */
-
   .table-container {
     overflow-x: auto;
     margin-left: 5%;
